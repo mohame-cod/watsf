@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>مدير دعوات واتساب</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <div class="brand-icon">✉</div>
+      <div>
+        <p class="eyebrow">أداة محلية • لا تحتاج إلى حساب</p>
+        <h1>مدير دعوات واتساب</h1>
+        <p class="subtitle">جهّز دعوات الأشخاص من ملف Excel بعد تصديره إلى CSV.</p>
+      </div>
+    </header>
+
+    <section class="panel">
+      <h2><span class="step">1</span> استيراد الأرقام</h2>
+      <label class="field-label" for="csvFile">ملف CSV (الأعمدة: Name وPhone)</label>
+      <input id="csvFile" type="file" accept=".csv,text/csv">
+      <p class="hint">لو الملف عندك بصيغة Excel (.xlsx)، افتحه في Excel ثم اختر «حفظ باسم» ثم CSV UTF-8.</p>
+
+      <label class="field-label" for="groupLink">2. رابط دعوة الجروب</label>
+      <input id="groupLink" type="url" dir="ltr" placeholder="https://chat.whatsapp.com/..." autocomplete="url">
+
+      <label class="field-label" for="messageTemplate">3. نص الدعوة</label>
+      <textarea id="messageTemplate" rows="4">أهلًا {{NAME}} 👋
+ندعوك للانضمام إلى جروب كرة القدم.
+رابط الانضمام:
+{{LINK}}</textarea>
+      <p class="hint">المتغيرات المتاحة: <code>{{NAME}}</code> للاسم و<code>{{LINK}}</code> للرابط.</p>
+
+      <div class="toolbar">
+        <button id="loadBtn" class="button primary">تحميل الأرقام وتجهيز القائمة</button>
+        <button id="downloadCsvBtn" class="button secondary" disabled>تنزيل القائمة المنظّمة CSV</button>
+      </div>
+      <div id="status" class="status" role="status" aria-live="polite">ارفع ملف CSV ثم أدخل رابط دعوة الجروب.</div>
+    </section>
+
+    <section class="panel">
+      <div class="list-heading">
+        <div>
+          <h2>قائمة الأشخاص</h2>
+          <p id="summary" class="hint">لم يتم تحميل أي أرقام بعد.</p>
+        </div>
+        <input id="search" class="search" type="search" placeholder="ابحث بالاسم أو الرقم..." disabled>
+      </div>
+      <div id="peopleList" class="people-list">
+        <div class="empty">ستظهر الأسماء هنا بعد تحميل الملف.</div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <strong>تنبيه:</strong> الأداة تفتح محادثة واتساب برسالة مجهزة فقط. راجع الرسالة واضغط إرسال بنفسك.
+      لا تضيف الأشخاص تلقائيًا إلى الجروب ولا ترسل رسائل جماعية في الخلفية.
+    </footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
